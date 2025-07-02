@@ -6,6 +6,7 @@ import {
   User, 
   FileText, 
   Settings, 
+  Shield, 
   ArrowLeft,
   ArrowRight 
 } from 'lucide-react';
@@ -18,8 +19,14 @@ const navigation = [
   { name: 'Configurações', href: '/configuracoes', icon: Settings },
 ];
 
+const adminNavigation = [
+  { name: 'Administrador', href: '/administrador', icon: Shield },
+];
+
 export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  // TODO: Substitua esta variável pela sua lógica de autenticação real
+  const isAdmin = true;
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -27,9 +34,7 @@ export function Sidebar() {
 
   return (
     <aside 
-      className={`${
-        isCollapsed ? 'w-20' : 'w-64'
-      } h-full bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300 ease-in-out`}
+      className={`${isCollapsed ? 'w-20' : 'w-64'} h-full bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300 ease-in-out`}
     >
       {/* Logo */}
       <div className="p-4 border-b border-sidebar-border">
@@ -61,6 +66,31 @@ export function Sidebar() {
           ))}
         </ul>
       </nav>
+
+      {/* Admin Navigation */}
+      {isAdmin && (
+        <div className="py-4 border-t border-sidebar-border">
+          <ul className="space-y-1">
+            {adminNavigation.map((item) => (
+              <li key={item.name}>
+                <NavLink
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `sidebar-link ${isActive ? 'active' : ''} ${
+                      isCollapsed ? 'justify-center' : 'justify-start'
+                    }`
+                  }
+                >
+                  <div className="w-5 h-5 flex items-center justify-center mr-3">
+                    <item.icon className="w-5 h-5" />
+                  </div>
+                  {!isCollapsed && <span>{item.name}</span>}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Toggle Button */}
       <div className="p-4 border-t border-sidebar-border">
