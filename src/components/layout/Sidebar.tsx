@@ -8,7 +8,8 @@ import {
   Settings, 
   Shield, 
   ArrowLeft,
-  ArrowRight 
+  ArrowRight,
+  Info
 } from 'lucide-react';
 
 const navigation = [
@@ -66,6 +67,27 @@ export function Sidebar() {
           ))}
         </ul>
       </nav>
+
+      {/* About Link */}
+      <div className="py-4 border-t border-sidebar-border">
+        <ul className="space-y-1">
+          <li>
+            <NavLink
+              to="/sobre"
+              className={({ isActive }) =>
+                `sidebar-link ${isActive ? 'active' : ''} ${
+                  isCollapsed ? 'justify-center' : 'justify-start'
+                }`
+              }
+            >
+              <div className="w-5 h-5 flex items-center justify-center mr-3">
+                <Info className="w-5 h-5" />
+              </div>
+              {!isCollapsed && <span>Sobre</span>}
+            </NavLink>
+          </li>
+        </ul>
+      </div>
 
       {/* Admin Navigation */}
       {isAdmin && (
