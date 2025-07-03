@@ -40,7 +40,7 @@ export function Sidebar() {
     >
       {/* Logo */}
       <div className="p-4 border-b border-sidebar-border">
-        <h1 className="font-pacifico text-2xl text-primary">
+        <h1 className="font-sans font-bold text-2xl text-primary">
           {!isCollapsed && 'VicSic'}
           {isCollapsed && 'V'}
         </h1>

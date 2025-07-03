@@ -20,7 +20,7 @@ export function AdminSidebar({ isCollapsed, toggleSidebar }: AdminSidebarProps) 
     <aside className={`h-full bg-card border-r border-border flex flex-col transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`}>
       <div className="p-4 border-b border-border">
         {/* O estilo Pacifico precisa ser configurado no tailwind.config.js se não estiver */}
-        <h1 className={`font-['Pacifico'] text-2xl text-primary overflow-hidden transition-all ${isCollapsed ? 'w-0' : 'w-full'}`}>VicSic</h1>
+        <h1 className={`font-sans font-bold text-2xl text-primary overflow-hidden transition-all ${isCollapsed ? 'w-0' : 'w-full'}`}>VicSic</h1>
       </div>
       <nav className="flex-1 overflow-y-auto py-4">
         <ul className="space-y-1 px-2">
