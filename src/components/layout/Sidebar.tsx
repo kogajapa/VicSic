@@ -9,7 +9,10 @@ import {
   Shield, 
   ArrowLeft,
   ArrowRight,
-  Info
+  Info,
+  NotebookPen,
+  Video,
+  CalendarCheck
 } from 'lucide-react';
 
 const navigation = [
@@ -18,6 +21,12 @@ const navigation = [
   { name: 'Pacientes', href: '/pacientes', icon: User },
   { name: 'Relatórios', href: '/relatorios', icon: FileText },
   { name: 'Configurações', href: '/configuracoes', icon: Settings },
+];
+
+const featuresNavigation = [
+  { name: 'Receituário', href: '/receituario', icon: NotebookPen },
+  { name: 'Telemedicina', href: '/telemedicina', icon: Video },
+  { name: 'Agente de agendamento', href: '/agente-de-agendamento', icon: CalendarCheck },
 ];
 
 const adminNavigation = [
@@ -67,6 +76,32 @@ export function Sidebar() {
             </li>
           ))}
         </ul>
+
+        {/* Features */}
+        <div className="mt-6">
+            <h3 className={`px-4 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider ${isCollapsed ? 'hidden' : 'block'}`}>
+                FEATURES
+            </h3>
+            <ul className="mt-2 space-y-1">
+                {featuresNavigation.map((item) => (
+                    <li key={item.name}>
+                        <NavLink
+                            to={item.href}
+                            className={({ isActive }) =>
+                                `sidebar-link ${isActive ? 'active' : ''} ${
+                                isCollapsed ? 'justify-center' : 'justify-start'
+                                }`
+                            }
+                        >
+                            <div className="w-5 h-5 flex items-center justify-center mr-3">
+                                <item.icon className="w-5 h-5" />
+                            </div>
+                            {!isCollapsed && <span>{item.name}</span>}
+                        </NavLink>
+                    </li>
+                ))}
+            </ul>
+        </div>
       </nav>
 
       {/* Admin Navigation */}
