@@ -10,11 +10,7 @@ import { SuccessModal } from '@/components/modals/SuccessModal';
 import { ReportPreview } from '@/components/reports/ReportPreview';
 import { FilePlus, ArrowLeft, FileText, Save, Mail, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-interface Patient {
-  id: string;
-  name: string;
-}
+import { Patient } from '@/types';
 
 export default function NovoRelatorio() {
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);

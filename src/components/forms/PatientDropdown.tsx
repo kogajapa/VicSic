@@ -1,11 +1,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown, User } from 'lucide-react';
-
-interface Patient {
-  id: string;
-  name: string;
-}
+import { Patient } from '@/types';
 
 interface PatientDropdownProps {
   onSelect: (patient: Patient) => void;

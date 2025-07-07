@@ -1,10 +1,6 @@
 
 import { Printer, Edit } from 'lucide-react';
-
-interface Patient {
-  id: string;
-  name: string;
-}
+import { Patient } from '@/types';
 
 interface ReportPreviewProps {
   patient: Patient;

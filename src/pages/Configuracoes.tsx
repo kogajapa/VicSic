@@ -104,7 +104,7 @@ export default function Configuracoes() {
             <Settings className="w-7 h-7 mr-2 text-primary" />
             Configurações
           </h1>
-          <p className="text-muted-foreground mt-1">Gerencie suas preferências do sistema VicSic</p>
+          <p className="text-muted-foreground mt-1">Gerencie suas preferências do sistema Paulo excelência em Psiquiatria</p>
         </div>
 
       </div>
@@ -300,78 +300,7 @@ export default function Configuracoes() {
           </div>
         </SectionCard>
 
-        {/* Integrations Section */}
-        <SectionCard
-          id="integrations"
-          icon={Link}
-          title="Integrações"
-          description="Conecte o VicSic com outros sistemas e aplicativos"
-          iconBgColor="bg-purple-100"
-          iconColor="text-purple-600"
-        >
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <Card className="p-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mr-3">
-                      <HardDrive className="w-6 h-6 text-red-600" />
-                    </div>
-                    <div>
-                      <h5 className="text-sm font-medium text-gray-900">Google Drive</h5>
-                      <p className="text-xs text-gray-500 mt-1">Armazene e compartilhe documentos no Drive</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full mr-3">
-                      Desconectado
-                    </span>
-                    <Button variant="ghost" size="sm">
-                      <Settings className="w-5 h-5" />
-                    </Button>
-                  </div>
-                </div>
-                <div className="mt-4 flex justify-end">
-                  <Button size="sm">Conectar</Button>
-                </div>
-              </Card>
-            </div>
 
-            <div>
-              <h4 className="text-base font-medium text-gray-900 mb-4">Opções de sincronização</h4>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-700">Sincronização automática</p>
-                    <p className="text-xs text-gray-500">Sincronizar dados automaticamente</p>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-700">Sincronização em segundo plano</p>
-                    <p className="text-xs text-gray-500">Sincronizar mesmo quando o aplicativo estiver fechado</p>
-                  </div>
-                  <Switch />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-700 mb-2">Frequência de sincronização</p>
-                  <select className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
-                    <option>A cada 15 minutos</option>
-                    <option>A cada 30 minutos</option>
-                    <option selected>A cada 1 hora</option>
-                    <option>A cada 3 horas</option>
-                    <option>A cada 6 horas</option>
-                    <option>Diariamente</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-end mt-6">
-              <Button>Salvar alterações</Button>
-            </div>
-          </div>
-        </SectionCard>
       </div>
 
       {/* Action Buttons */}

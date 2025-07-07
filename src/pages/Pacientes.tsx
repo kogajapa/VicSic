@@ -17,6 +17,7 @@ import {
   User, UserPlus, Search, Filter, CalendarDays, ChevronDown, ListChecks, Table as TableIcon, LayoutGrid,
   Eye, FilePenLine, Trash2, Download, Archive, X, Mail, Phone, MessageSquare, FileText, ChevronLeft, ChevronRight, MoreHorizontal
 } from 'lucide-react';
+import { PATIENT_STATUS_VARIANTS } from '@/constants';
 
 // Mock Data
 const patientsData = [
@@ -29,7 +30,13 @@ const patientsData = [
     status: 'Ativo',
     lastAppointment: '28/06/2025',
     initials: 'MC',
-    avatarColor: 'bg-primary/10 text-primary'
+    avatarColor: 'bg-primary/10 text-primary',
+    cpf: '111.222.333-44',
+    gender: 'Feminino',
+    insurancePlan: 'Plano Ouro',
+    insuranceId: '987654321',
+    address: { street: 'Rua das Flores, 123', city: 'São Paulo', state: 'SP' },
+    notes: 'Paciente apresenta quadro de ansiedade generalizada.'
   },
   {
     id: 'P12346',
@@ -40,7 +47,13 @@ const patientsData = [
     status: 'Ativo',
     lastAppointment: '30/06/2025',
     initials: 'PA',
-    avatarColor: 'bg-green-100 text-green-600'
+    avatarColor: 'bg-green-100 text-green-600',
+    cpf: '222.333.444-55',
+    gender: 'Masculino',
+    insurancePlan: 'Plano Prata',
+    insuranceId: '123456789',
+    address: { street: 'Av. Paulista, 1000', city: 'São Paulo', state: 'SP' },
+    notes: ''
   },
   {
     id: 'P12347',
@@ -51,7 +64,13 @@ const patientsData = [
     status: 'Inativo',
     lastAppointment: '15/05/2025',
     initials: 'JS',
-    avatarColor: 'bg-blue-100 text-blue-600'
+    avatarColor: 'bg-blue-100 text-blue-600',
+    cpf: '333.444.555-66',
+    gender: 'Feminino',
+    insurancePlan: 'Plano Bronze',
+    insuranceId: '456789123',
+    address: { street: 'Rua da Consolação, 500', city: 'São Paulo', state: 'SP' },
+    notes: 'Paciente transferido.'
   },
   {
     id: 'P12348',
@@ -62,7 +81,13 @@ const patientsData = [
     status: 'Pendente',
     lastAppointment: '-',
     initials: 'RM',
-    avatarColor: 'bg-purple-100 text-purple-600'
+    avatarColor: 'bg-purple-100 text-purple-600',
+    cpf: '444.555.666-77',
+    gender: 'Masculino',
+    insurancePlan: 'N/A',
+    insuranceId: 'N/A',
+    address: { street: 'Av. Faria Lima, 2500', city: 'São Paulo', state: 'SP' },
+    notes: 'Aguardando documentação.'
   },
   {
     id: 'P12349',
@@ -73,15 +98,16 @@ const patientsData = [
     status: 'Ativo',
     lastAppointment: '25/06/2025',
     initials: 'LF',
-    avatarColor: 'bg-yellow-100 text-yellow-600'
+    avatarColor: 'bg-yellow-100 text-yellow-600',
+    cpf: '555.666.777-88',
+    gender: 'Feminino',
+    insurancePlan: 'Plano Ouro',
+    insuranceId: '654321987',
+    address: { street: 'Rua Augusta, 900', city: 'São Paulo', state: 'SP' },
+    notes: ''
   },
 ];
 
-const statusVariantMap: { [key: string]: 'default' | 'success' | 'destructive' | 'warning' } = {
-  'Ativo': 'success',
-  'Inativo': 'destructive',
-  'Pendente': 'warning',
-};
 
 export default function Pacientes() {
   const [selectedPatients, setSelectedPatients] = useState<string[]>([]);
@@ -220,7 +246,7 @@ export default function Pacientes() {
                 <TableCell>{patient.birthDate}</TableCell>
                 <TableCell>{patient.phone}</TableCell>
                 <TableCell>
-                  <Badge variant={statusVariantMap[patient.status] || 'default'}>{patient.status}</Badge>
+                  <Badge variant={PATIENT_STATUS_VARIANTS[patient.status as keyof typeof PATIENT_STATUS_VARIANTS] || 'default'}>{patient.status}</Badge>
                 </TableCell>
                 <TableCell>{patient.lastAppointment}</TableCell>
                 <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
@@ -272,54 +298,67 @@ export default function Pacientes() {
             <SheetTitle>Detalhes do Paciente</SheetTitle>
           </SheetHeader>
           {selectedPatient && (
-            <div className="py-4 space-y-6">
-              <div className="flex flex-col items-center">
-                <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-3 ${selectedPatient.avatarColor}`}>
+            <div className="py-4 space-y-4 max-h-[90vh] overflow-y-auto">
+              <div className="flex flex-col items-center space-y-2 mb-4">
+                <div className={`w-20 h-20 rounded-full flex items-center justify-center ${selectedPatient.avatarColor}`}>
                   <span className="text-2xl font-medium">{selectedPatient.initials}</span>
                 </div>
                 <h3 className="text-xl font-semibold">{selectedPatient.name}</h3>
                 <p className="text-sm text-muted-foreground">ID: {selectedPatient.id}</p>
               </div>
+
               <Card>
                 <CardHeader><CardTitle className="text-base">Informações Pessoais</CardTitle></CardHeader>
                 <CardContent className="text-sm space-y-2">
+                  <div className="flex justify-between"><span>CPF:</span> <span>{selectedPatient.cpf}</span></div>
                   <div className="flex justify-between"><span>Data de Nasc.:</span> <span>{selectedPatient.birthDate}</span></div>
-                  <div className="flex justify-between"><span>Contato:</span> <span>{selectedPatient.phone}</span></div>
-                  <div className="flex justify-between"><span>Email:</span> <span>{selectedPatient.email}</span></div>
+                  <div className="flex justify-between"><span>Gênero:</span> <span>{selectedPatient.gender}</span></div>
+                  <div className="flex justify-between"><span>Convênio:</span> <span>{selectedPatient.insurancePlan}</span></div>
+                  <div className="flex justify-between"><span>Nº Carteirinha:</span> <span>{selectedPatient.insuranceId}</span></div>
                 </CardContent>
               </Card>
-               <Card>
-                <CardHeader><CardTitle className="text-base">Consultas Recentes</CardTitle></CardHeader>
+
+              <Card>
+                <CardHeader><CardTitle className="text-base">Informações de Contato</CardTitle></CardHeader>
+                <CardContent className="text-sm space-y-2">
+                  <div className="flex justify-between"><span>Email:</span> <span className="truncate">{selectedPatient.email}</span></div>
+                  <div className="flex justify-between"><span>Telefone:</span> <span>{selectedPatient.phone}</span></div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader><CardTitle className="text-base">Endereço</CardTitle></CardHeader>
+                <CardContent className="text-sm space-y-2">
+                  <div className="flex justify-between"><span>Endereço:</span> <span className="text-right">{selectedPatient.address.street}</span></div>
+                  <div className="flex justify-between"><span>Cidade:</span> <span>{selectedPatient.address.city}</span></div>
+                  <div className="flex justify-between"><span>Estado:</span> <span>{selectedPatient.address.state}</span></div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader><CardTitle className="text-base">Observações</CardTitle></CardHeader>
+                <CardContent className="text-sm">
+                  <p className="text-muted-foreground italic">{selectedPatient.notes || 'Nenhuma observação.'}</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader><CardTitle className="text-base">Relatórios Recentes</CardTitle></CardHeader>
                 <CardContent>
-                    {/* Recent appointments content here */}
-                                      <ul className="space-y-3">
+                  <ul className="space-y-3">
                     <li className="flex items-center justify-between">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0">
-                          <div className="w-3 h-3 rounded-full bg-green-500 mt-1.5"></div>
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-medium">Consulta de Rotina</p>
-                          <p className="text-xs text-muted-foreground">Dr. Carlos Andrade - 28/06/2025</p>
-                        </div>
+                      <div>
+                        <p className="text-sm font-medium">Relatório de Sessão</p>
+                        <p className="text-xs text-muted-foreground">Gerado em: 28/06/2025</p>
                       </div>
-                      <Button variant="ghost" size="icon">
-                        <FileText className="w-4 h-4" />
-                      </Button>
+                      <Button variant="outline" size="sm"><FileText className="w-4 h-4 mr-2" />Ver Relatório</Button>
                     </li>
                     <li className="flex items-center justify-between">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0">
-                          <div className="w-3 h-3 rounded-full bg-blue-500 mt-1.5"></div>
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-medium">Exame de Sangue</p>
-                          <p className="text-xs text-muted-foreground">Laboratório Central - 15/06/2025</p>
-                        </div>
+                      <div>
+                        <p className="text-sm font-medium">Relatório de Acompanhamento</p>
+                        <p className="text-xs text-muted-foreground">Gerado em: 15/06/2025</p>
                       </div>
-                      <Button variant="ghost" size="icon">
-                        <FileText className="w-4 h-4" />
-                      </Button>
+                      <Button variant="outline" size="sm"><FileText className="w-4 h-4 mr-2" />Ver Relatório</Button>
                     </li>
                   </ul>
                 </CardContent>

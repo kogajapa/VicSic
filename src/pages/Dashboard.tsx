@@ -20,28 +20,16 @@ export default function Dashboard() {
           <BarChart className="w-7 h-7 mr-2 text-primary" />
           Dashboard
         </h1>
-        <p className="text-muted-foreground mt-1">Visão geral do sistema VicSic</p>
+        <p className="text-muted-foreground mt-1">Visão geral do sistema Paulo excelência em Psiquiatria</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatsCard
-          title="Transcrições enviadas este mês"
-          value="42"
-          icon={FileText}
-          iconBgColor="bg-primary-light"
-          iconColor="text-primary"
-          trend={{
-            value: "12% em relação ao mês anterior",
-            isPositive: true,
-            icon: ArrowUp
-          }}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+
         
         <StatsCard
           title="Relatórios gerados"
           value="8"
-          subtitle="/ 36"
           icon={BarChart}
           iconBgColor="bg-chart-blue/10"
           iconColor="text-chart-blue"

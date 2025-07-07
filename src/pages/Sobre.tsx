@@ -21,7 +21,7 @@ const mainFeatures = [
       <ul className="mt-2 space-y-2 text-sm list-none">
         <li><strong>Visão Geral:</strong> A página inicial do sistema, que apresenta um resumo das informações mais importantes.</li>
         <li><strong>Estatísticas:</strong> Cards com dados chave e métricas de desempenho.</li>
-        <li><strong>Atividade Recente:</strong> Um feed com as últimas atividades realizadas no sistema.</li>
+
         <li><strong>Gráficos:</strong> Visualizações gráficas de dados, como diagnósticos e sessões.</li>
       </ul>
     ),
@@ -95,9 +95,9 @@ export function Sobre() {
           <TabsContent value="sobre-sistema">
             <Card>
               <CardHeader>
-                <CardTitle>Sobre o Sistema VicSic</CardTitle>
+                <CardTitle>Sobre Paulo excelência em Psiquiatria</CardTitle>
                 <p className="text-muted-foreground pt-2">
-                  VicSic é um sistema de dashboard completo, projetado para gerenciar informações e processos de forma eficiente. Construído com tecnologias modernas como React, Vite e TypeScript, o sistema oferece uma interface de usuário rápida, responsiva e intuitiva, utilizando componentes da biblioteca Shadcn/UI e estilização com Tailwind CSS.
+                  Paulo excelência em Psiquiatria é um sistema de dashboard completo, projetado para gerenciar informações e processos de forma eficiente. Construído com tecnologias modernas como React, Vite e TypeScript, o sistema oferece uma interface de usuário rápida, responsiva e intuitiva, utilizando componentes da biblioteca Shadcn/UI e estilização com Tailwind CSS.
                 </p>
               </CardHeader>
               <CardContent>
@@ -143,7 +143,7 @@ export function Sobre() {
                 <FileSignature className="h-10 w-10 text-primary" />
                 <div>
                   <CardTitle className="text-primary">Receituário com Assinatura Digital</CardTitle>
-                  <p className="text-sm text-muted-foreground">A próxima grande atualização do VicSic!</p>
+                  <p className="text-sm text-muted-foreground">A próxima grande atualização do Paulo excelência em Psiquiatria!</p>
                 </div>
               </CardHeader>
               <CardContent>
